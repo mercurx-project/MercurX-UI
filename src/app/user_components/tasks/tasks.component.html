@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="email-wrap bookmark-wrap">
+    <div class="row">
+      <div class="col-xl-3 box-col-6">
+        <div class="md-sidebar" (clickOutside)="Outside()">
+          <a class="btn btn-primary md-sidebar-toggle" href="javascript:void(0)" (click)="isOpen =!isOpen">task
+            filter</a>
+          <div class="md-sidebar-aside job-left-aside custom-scrollbar" [class.open]="isOpen">
+            <div class="email-left-aside">
+              <div class="card">
+                <div class="card-body">
+                  <div class="email-app-sidebar left-bookmark task-sidebar theme-scrollbar">
+                      
+                    <ul class="nav main-menu" role="tablist">
+                      <li class="nav-item">
+                        <button class="badge-light-primary btn-block btn-mail w-100" type="button" (click)="newTasks()">
+                          <app-feather-icons [class]="'me-2'" [icons]="'check-circle'"></app-feather-icons>
+                          New Task</button>
+                      </li>
+                      <li class="nav-item">
+                        <span class="main-title"> Views</span>
+                      </li>
+                      @for (item of view; track item) {
+                      <li>
+                        <a [ngClass]="item.title_id == selectedId ? 'active show' : 'show'" id="pills-created-tab"
+                          (click)="changeData(item)" id="pills-created-tab">
+                          <span class="title"> {{item.title}}</span></a>
+                      </li>
+                      }
+                      <li>
+                        <hr>
+                      </li>
+                      <li>
+                        <span class="main-title">
+                          Tags
+                          <span class="pull-right">
+                            <a href="javascript:void(0)" (click)="creatTasks()">
+                              <app-feather-icons [icons]="'plus-circle'"></app-feather-icons>
+                            </a>
+                          </span>
+                        </span>
+                      </li>
+                      <li>
+                        @for (item of tasks; track item) {
+                        <a id="pills-notification-tab" [ngClass]="item.title_id == selectedId ? 'active show' : 'show'"
+                          id="pills-notification-tab" (click)="changeData1(item.title_id)"><span class="title">
+                            {{item.title}}</span></a>
+                        }
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9 col-md-12 box-col-12">
+        <app-tasks-data [selectedId]="selectedId" [status]="statusData"></app-tasks-data>
+      </div>
+    </div>
+  </div>
+</div>
